@@ -1,0 +1,153 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  color: rgb(0, 102, 0);
+}
+
+body {
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container>* {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(30px);
+  padding: 30px 40px;
+  box-sizing: border-box;
+  height: fit-content;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.441);
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.formelements:focus {
+  outline: none;
+}
+
+.formelements {
+  padding: 10px;
+  border: 0px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 17px;
+  width: 300px;
+}
+
+#other-options {
+  margin-top: 10px;
+}
+
+#container>div> :nth-last-child(2) {
+  color: white;
+  background-color: green;
+  width: 100%;
+}
+
+#container>div> :nth-last-child(2):hover {
+  cursor: pointer;
+}
+
+#container>div> :last-child>p {
+  float: left;
+}
+
+#container>div> :last-child>a {
+  float: right;
+}
+
+#pass-container>img {
+  position: absolute;
+}
+
+#cookieInfo {
+  margin-bottom: 20px;
+  background-color: rgba(255, 0, 0, 0.43);
+  border-color: red;
+  display: none;
+}
+
+#cookieInfo>p {
+  width: 320px;
+  color: yellow;
+}
+
+#cookieInfo>p::before {
+  content: "⚠";
+  color: yellow;
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+#container>div> :nth-last-child(2) {
+  color: white;
+  background-color: green;
+  width: 100%;
+}
+
+#message {
+  position: absolute;
+  top: -50px;
+  right: 10px;
+  padding: 10px;
+  max-width: 300px;
+  text-wrap: wrap;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  color: yellow;
+  border: 2px solid red;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(255, 0, 0, 0.275);
+  backdrop-filter: blur(10px);
+  animation-name: none;
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+}
+
+@keyframes showmessage {
+  from {
+    top: -150px;
+  }
+
+  to {
+    top: 10px;
+  }
+}
+
+@keyframes hidemessage {
+  from {
+    top: 10px;
+  }
+
+  to {
+    top: -150px;
+  }
+}
+
+#contact::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#pass-container {
+  position: relative;
+}
+
+#pass-container>img {
+  position: absolute;
+  width: 20px;
+  bottom: 8px;
+  right: 15px;
+}
+
+#pass-container>img:hover {
+  cursor: pointer;
+}

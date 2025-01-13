@@ -1,0 +1,98 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.font-white {
+  color: white;
+}
+
+.font-black {
+  color: black;
+}
+
+.font-green {
+  color: rgb(0 131 0);
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.font-red {
+  color: rgb(255, 32, 87);
+}
+
+.font-maroon {
+  color: rgb(163, 0, 0);
+}
+
+.font-grey {
+  color: grey;
+}
+
+.border-1px {
+  border: 1px solid red;
+}
+
+.link {
+  color: rgb(1, 124, 182);
+  cursor: pointer;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-line-through {
+  text-decoration: line-through;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-around {
+  justify-content: space-around;
+}
+
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-space-around {
+  align-content: space-around;
+}
+
+.align-space-evenly {
+  align-content: space-evenly;
+}
+
+.align-space-between {
+  align-content: space-between;
+}

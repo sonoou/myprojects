@@ -1,0 +1,34 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.same{
+    width:1536px;
+    height:748px;
+    padding:50px 50px;
+    box-sizing: border-box;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.spin{
+    border:10px;
+    border-style:solid;
+    /* border-color:rgba(45, 195, 15, 0.232) rgba(45, 195, 15, 0.514) rgba(45, 195, 15, 0.751) rgb(45, 195, 15); */
+    border-top:1px solid  linear-gradient(to right, red, blue) 1;
+    border-radius:100%;
+    width:90px;
+    height:90px;
+    animation-name:rotate;
+    animation-duration:1s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+    animation-direction: normal;
+}
+@keyframes rotate{
+    to{
+        transform:rotate(360deg);
+    }
+}

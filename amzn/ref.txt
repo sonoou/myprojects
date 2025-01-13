@@ -1,0 +1,61 @@
+###############################
+## How to remove input focus ##
+###############################
+
+input:focus{
+    outline:none;
+}
+
+####################################
+## How to check cookie is enabled ##
+####################################
+
+function checkCookie() {
+    document.cookie = "testcookie=1";
+    const cookiesEnabled = document.cookie.indexOf("testcookie") !== -1;
+    document.cookie = "testcookie=1; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    if()
+}
+
+##############################################
+## limit precision of floating number in JS ##
+##############################################
+  let a = 2.3353;
+  console.log(a.toFixed(2));
+  // now output will be 2.33
+
+###########################
+## Modules in JavaScript ##
+###########################
+  a better way to organize our code. So first let's take a look at a 
+  problem that we have in our current code. For example,
+  <html>
+    <body>
+      <script src="data/cart.js"></script>
+      <script src="data/products.js"></script>
+      <script src="data/amazon.js"></script>
+    </body>
+  </html>
+  we can see that there are three JS files and it is same thing 
+  combining all three js file into one file. the problem is if we create
+  a variable named "abc" in each file it is gonna cause naming conflict
+  error. solution is JS feature Modules, A module basically contains a
+  variable inside a file and if we same variable in another file, it is
+  no gonna conflict anything outside the file.
+
+  1) cart.js:
+      ┌──────────────────┐
+      │export let cart[];│
+      └──────────────────┘
+  2) <script type="module" src="amazon.js"></script>
+
+  3) amazon.js
+      ┌───────────────────────────────────────────────────┐
+      │import {cart} from 'location of cart.js';          │
+      │// OR                                              │
+      │import {cart as myCart} from 'location of cart.js';│
+      └───────────────────────────────────────────────────┘
+
+
+
+  

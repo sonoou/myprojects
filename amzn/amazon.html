@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon - Home page</title>
+  <link rel="stylesheet" href="style/Amazon.css">
+</head>
+<body>
+  <div class="main display-flex">
+    <div class="navbar-container display-flex">
+      <div class="logo-container">
+        <img src="images/amazon-logo-white.png" atl="amazon-logo">
+      </div>
+      <div class="search-container display-flex">
+        <input type="text" id="search-box" placeholder="Search">
+        <button class="search-button">
+          <img src="images/icons/search-icon.png" atl="search-icon">
+        </button>
+      </div>
+      <div class="login-container">
+        <a href="login.html" class="display-flex font-white text-decoration-none">Login</a>
+      </div>
+      <div class="orders-cart-container display-flex">
+          <a href="#" class="orders-container font-white">
+            <div>Return</div>
+            <div>& Orders</div>
+          </a>
+          <a href="#" class="cart-container font-white display-flex">
+            <img src="images/icons/cart-icon.png" alt="cart-icon">
+            <div class="cart-quantity">03</div>
+            <div class="cart-label">Cart</div>
+          </a>
+      </div>
+    </div>
+    <div class="product-grid">
+      <div class="product-container display-flex">
+        <input type="text" id="pid" value="" hidden>
+        <a href="singleproduct.html" class="product-image display-flex" >
+          <img src="images/products/athletic-cotton-socks-6-pairs.jpg" alt="">
+        </a>
+        <a href="#" class="product-name font-black text-decoration-none">Black and Gray Athletic Cotton Socks - 6 Pairs</a>
+        <div class="ratings display-flex">
+          <img class="ratings-image" src="images/ratings/rating-45.png" alt="">
+          <div class="ratings-count">127</div>
+        </div>
+        <div class="product-price">$10.90</div>
+        <div class="quantity-container">
+          <select id="p1-quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="cart-button-container display-flex">
+          <div id="cart-info">
+            <img src="images/icons/checkmark.png" alt="">
+            Added
+          </div>
+          <button class="add-to-cart-button" id="add-cart-button">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script/amazon.js"></script>
+</body>
+</html>

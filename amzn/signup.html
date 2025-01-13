@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style/signup.css">
+</head>
+<body onload="checkCookie()">
+    <div id="message"></div>
+    <div id="container">
+      <div id="cookieInfo">
+          <p>Please enable cookies.</p>
+      </div>
+      <div>
+        <h1>Register</h1>
+        <input id="fname" class="formelements" type="text" placeholder="First name">
+        <input id="lname" class="formelements" type="text" placeholder="Last name(Optional)">
+        <input id="email" class="formelements" type="email" placeholder="Email">
+        <input id="contact" class="formelements" type="number" placeholder="Contact">
+        <div id="pass-container">
+          <input id="pass" class="formelements" type="password" placeholder="Password">
+          <img id="passviewer" src="images/icons/pass-eye-open.png" alt="">
+        </div>
+        <input id="cpass" class="formelements" type="password" placeholder="Confirm Password">
+        <input type="button" disabled class="formelements" id="register" value="Sign up">
+        <div id="other-options">
+          <a href="login.html">Already Have an Account? Login</a>
+        </div>
+      </div>
+    </div>
+    <script src="script/checkcooki.js"></script>
+    <script src="script/obj.js"></script>
+    <script src="script/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style/login.css">
+</head>
+<body onload="checkCookie()">
+    <div id="message">Wrong password or email or phone</div>
+    <div id="container">
+        <div id="cookieInfo">
+            <p>Please enable cookies.</p>
+        </div>
+        <div>
+          <h1>Sign In</h1>
+          <input id="email" class="formelements" type="text" placeholder="Phone or Email" onkeyup="checkPhoneEmail(this,event)">
+          <div id="pass-container">
+            <input id="pass" class="formelements" type="password" placeholder="Password">
+            <img id="passviewer" src="images/icons/pass-eye-open.png" alt="">
+          </div>
+          <input type="submit" disabled class="formelements" id="submit" value="Login" >
+          <div id="rememberbutton">
+              <p>Remember me</p>
+              <div id="togglebutton">
+                  <div></div>
+              </div>
+              <input type="text" value="false" id="cooki" hidden>
+          </div>
+          <div id="other-options">
+              <p>Forget Password</p>
+              <a href="signup.html">New user? Register</a>
+          </div>
+        </div>
+    </div>
+    <script src="script/obj.js"></script>
+    <script src="script/checkcooki.js"></script>
+    <script src="script/login.js"></script>
+</body>
+</html>

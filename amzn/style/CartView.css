@@ -1,0 +1,144 @@
+.review-label {
+  font-size: 22px;
+  font-weight: bold;
+  width: 1120px;
+  margin-top: 15px;
+}
+
+.checkout-container {
+  width: 1120px;
+  margin-top: 15px;
+}
+
+.product-list-container {
+  width: 750px;
+  margin-right: 10px;
+  overflow-y: scroll;
+  height: 84.4vh;
+}
+
+.product-list-container::-webkit-scrollbar {
+  width: 1px;
+}
+
+.product-list {
+  height: fit-content;
+  border: 1px solid rgba(128, 128, 128, 0.722);
+  padding: 25px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.delivery-date-container {
+  font-size: 20px;
+}
+
+.product-container {
+  margin-top: 20px;
+  flex-grow: 1;
+}
+
+.product-image-container {
+  width: 120px;
+  height: 120px;
+  margin-right: 10px;
+}
+
+.product-image-container>img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.product-name {
+  width: 250px;
+}
+
+.product-price-container {
+  margin-top: 7px;
+}
+
+.product-quantity-container {
+  margin-top: 7px;
+}
+
+.product-quantity-container > *{
+  margin-left: 5px;
+}
+
+.product-quantity{
+  width: fit-content;
+  border:none;
+  background-color: transparent;
+  border-radius: 5px;
+  padding : 2px 5px;
+  outline: none;
+}
+
+.delivery-option-container {
+  margin-top: 20px;
+  width: 280px;
+}
+
+.zero-charge,
+.medium-charge,
+.high-charge {
+  margin-top: 8px;
+  line-height: 21px;
+}
+
+input[type=radio] {
+  width: 20px;
+  height: 20px;
+  padding: 100px 0%;
+  margin-right: 10px;
+}
+
+input[type=radio]:focus {
+  outline: none;
+}
+
+.order-summary-container {
+  border: 1px solid rgba(128, 128, 128, 0.722);
+  border-radius: 5px;
+  flex-grow: 1;
+  padding: 20px;
+  height: fit-content;
+  font-size: 15px;
+}
+
+.order-heading {
+  font-size: 18px;
+}
+
+.order-summary-container>* {
+  margin-bottom: 10px;
+}
+
+.next-to-shipping {
+  /* margin-top:10px; */
+  width: 50px;
+  align-self: end;
+}
+
+.order-total-container {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.place-order-container {
+  margin-bottom: 0px;
+}
+
+.place-order-button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 7px;
+  background-color: rgb(255, 216, 20);
+  margin-top: 10px;
+}
+
+.place-order-button:hover {
+  background-color: rgb(247, 202, 0);
+  cursor: pointer;
+}
