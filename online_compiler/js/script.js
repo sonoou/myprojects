@@ -1,15 +1,17 @@
 let status = document.querySelector("#status");
 const editor = document.querySelector("#editor");
 const runbutton = document.querySelector("#run");
+
 runbutton.addEventListener("click",() => {
-  const output = document.querySelector("#output");
   let code = "";
+  console.log(editor.value.toString());
   const editornodes = editor.childNodes;
   let no = 0;
   for(let str of editornodes){
     if(`${str.nodeValue}` !== "null"){
       no++;
       code = code + `&line${no}=${str.nodeValue}`;
+      console.log(code);
     }
   }
   postRequest(`compile.jsp?no=1${code}`);
@@ -18,6 +20,7 @@ runbutton.addEventListener("click",() => {
 function changeFont(size){
   editor.style.fontSize = size+"px";
 }
+
 editor.addEventListener("paste", event => {
   event.preventDefault();
   const text = (event.clipboardData || window.clipboardData).getData('text');
@@ -33,32 +36,32 @@ editor.addEventListener("paste", event => {
   selection.removeAllRanges();
 });
 
-editor.addEventListener("keydown", event => {
-  if(event.key === 'Enter'){
-    event.preventDefault();
-    const br = document.createElement('br');
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    range.deleteContents();
-    range.insertNode(br);
-    range.setStartAfter(br);
-    range.setEndAfter(br);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-  if(event.key === 'Tab'){
-    event.preventDefault();
-    const br = document.createTextNode('\t');
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    range.deleteContents();
-    range.insertNode(br);
-    range.setStartAfter(br);
-    range.setEndAfter(br);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-});
+// editor.addEventListener("keydown", event => {
+//   if(event.key === 'Enter'){
+//     event.preventDefault();
+//     const br = document.createElement('br');
+//     const selection = window.getSelection();
+//     const range = selection.getRangeAt(0);
+//     range.deleteContents();
+//     range.insertNode(br);
+//     range.setStartAfter(br);
+//     range.setEndAfter(br);
+//     selection.removeAllRanges();
+//     selection.addRange(range);
+//   }
+//   if(event.key === 'Tab'){
+//     event.preventDefault();
+//     const br = document.createTextNode('\t');
+//     const selection = window.getSelection();
+//     const range = selection.getRangeAt(0);
+//     range.deleteContents();
+//     range.insertNode(br);
+//     range.setStartAfter(br);
+//     range.setEndAfter(br);
+//     selection.removeAllRanges();
+//     selection.addRange(range);
+//   }
+// });
 
 function postRequest(url){
   let xmlhttp = new XMLHttpRequest();

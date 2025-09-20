@@ -12,7 +12,7 @@
     rd = request.getRequestDispatcher("Register.jsp");
     rd.forward(request,response);
   }
-  else if(url.equals("cartupdate")){
+  else if(url.equals("cartupdate") || url.equals("quantityupdate") || url.equals("removeproduct")){
     rd = request.getRequestDispatcher("CartUpdate.jsp");
     rd.forward(request,response);
   }

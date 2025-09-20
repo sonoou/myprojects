@@ -121,6 +121,23 @@ public class CartTable{
     }
   }
 
+  public boolean updateQuantity(String quantity){
+    try{
+      Statement st = getStatement();
+      st.executeUpdate(
+        "UPDATE cart_table SET quantity='"+quantity+"'"+
+        " WHERE customer_id='"+customerId+"'"+
+        " AND product_id='"+productId+"'"
+      );
+      return true;
+    }
+    catch(Exception e){
+      System.out.println("\nException CartTable.upateQuantity");
+      System.out.println(e);
+      return false;
+    }
+  }
+
   public ResultSet getProductList(){
     Statement st = getStatement();
     ResultSet rs;

@@ -19,7 +19,18 @@
 <jsp:setProperty name="cartTable" property="productId" value="<%= productId %>" />      
 <%
     long totalCartQuantity = 0L;
-    if(cartTable.add(quantity)){
+    String url = request.getParameter("url");
+    if(url.equals("quantityupdate")){
+      if(cartTable.updateQuantity(quantity)){
+        totalCartQuantity = cartTable.getCartQuantity();
+      }
+    }
+    else if(url.equals("removeproduct")){
+      if(cartTable.remove()){
+        totalCartQuantity = cartTable.getCartQuantity();
+      }
+    }
+    else if(cartTable.add(quantity)){
       totalCartQuantity = cartTable.getCartQuantity();
     }
     rd = request.getRequestDispatcher("Action.jsp?url=total:"+totalCartQuantity);

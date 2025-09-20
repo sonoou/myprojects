@@ -11,9 +11,13 @@
   String dirname = "/tmp/servercompiler/"+hit;
   Runtime rn = Runtime.getRuntime();
   rn.exec("mkdir -p "+dirname);
+  System.out.println("mkdir -p "+dirname+" done");
   rn.exec("touch "+dirname+"/Main.java");
+  System.out.println("touch "+dirname+"/Main.java done");
   rn.exec("touch "+dirname+"/Main.class");
+  System.out.println("touch "+dirname+"/Main.class done");
   rn.exec("chmod -R 777 "+dirname);
+  System.out.println("chmod -R 777"+dirname+" done");
   FileWriter fw = new FileWriter(new File(dirname+"/Main.java"));
   PrintWriter pw = new PrintWriter(fw);
   int i=0;

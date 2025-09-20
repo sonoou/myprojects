@@ -31,7 +31,8 @@
         <%
             double totalPrice = 0.00;
             int totalItems = 0;
-            String estimateTaxStr = "";
+            String estimateTaxStr = "0.0";
+            String orderTotal = "0.0";
             ResultSet rs = cartTable.getProductList();
             if(rs.next()){
               while(true){
@@ -43,9 +44,8 @@
                 String productQuantity = rs.getString(5);
                 totalItems += Integer.parseInt(productQuantity);
                 totalPrice += Double.parseDouble(productPriceCents) * Integer.parseInt(productQuantity);
-                estimateTaxStr = String.format("%.2f",(totalPrice*10/100)/100);
         %>
-        <div class="product-list" id="<%= productId %>-product" data-product-delivery-date="<%= date.getFutureDate(9) %>" data-product-price-cents="<%= productPriceCents %>" data-product-quantity="<%= productQuantity %>" data-product-delivery-charge="00">
+        <div class="product-list" id="<%= productId %>-product" data-product-id="<%= productId %>" data-product-delivery-date="<%= date.getFutureDate(9) %>" data-product-price-cents="<%= productPriceCents %>" data-product-quantity="<%= productQuantity %>" data-product-delivery-charge="00">
           <div class="delivery-date-container font-green font-bold">
             Delivery date: <span class="delivery-date" id="<%= productId %>-delivery-date"><%= date.getFutureDate(9) %></span>
           </div>
@@ -62,7 +62,7 @@
                   $<span class="product-price"><%= productPrice %></span>
                 </div>
                 <div class="product-quantity-container display-flex align-center">
-                  Quantity: <span class="product-quantity" id="<%= productId %>-product-quantity" onkeyup="updateQuantity(this,event)"><%= productQuantity %></span> <span class="update-button link" data-product-id="<%= productId %>" onclick="quantityUpdateButton(this)">Update</span> <span class="delete-button link" data-product-id="<%= productId %>" id="<%= productId %>-delete-button">Delete</span>
+                  Quantity: <span class="product-quantity" id="<%= productId %>-product-quantity"  onkeyup="updateQuantity(this,event)"><%= productQuantity %></span> <span class="update-button link" data-product-id="<%= productId %>" onclick="quantityUpdateButton(this)">Update</span> <span class="delete-button link" onclick="removeProduct(this)" data-product-id="<%= productId %>" id="<%= productId %>-delete-button">Delete</span>
                 </div>
               </div>
             </div>
@@ -97,6 +97,8 @@
                   break;
                 }
               }
+              estimateTaxStr = String.format("%.2f",(totalPrice*10/100)/100);
+              orderTotal = String.format("%.2f",(totalPrice+(totalPrice*10/100))/100);
             }
             else{
         %>
@@ -111,26 +113,22 @@
           <span class="items-label">Items (<span class="items-count" data-items-count="<%= totalItems %>"><%= totalItems %></span>):</span><span class="items-price-container">$<span class="items-price" data-items-price="<%= totalPrice %>"><%= totalPrice/100 %></span></span>
         </div>
         <div class="shipping-container display-flex justify-space-between">
-          <span class="shipping-label">Shipping & handling</span><span class="shipping-price-container">$<span class="shipping-price">0.00</span></span>
+          <span class="shipping-label">Shipping & handling</span><span class="shipping-price-container">$<span class="shipping-price">0.0</span></span>
         </div>
         <hr class="next-to-shipping">
         <div class="before-tax-container display-flex justify-space-between">
           <span class="before-tax-label">Total before tax:</span><span class="before-tax-price-container">$<span class="before-tax-price" data-before-tax-price="<%= totalPrice/100 %>"><%= totalPrice/100 %></span></span>
         </div>
         <div class="estimate-tax-container display-flex justify-space-between">
-          <span class="estimate-tax-label">Estimated tax (
-            <span class="estimate-tax-rate">10</span>%):
+          <span class="estimate-tax-label">Estimated tax (<span class="estimate-tax-rate">10</span>%):
           </span>
           <span class="estimate-tax-price-container">
-            $
-            <span class="estimate-tax-price" data-estimate-tax-price="<%= estimateTaxStr %>">
-              <%= estimateTaxStr %>
-            </span>
+            $<span class="estimate-tax-price" data-estimate-tax-price="<%= estimateTaxStr %>"><%= estimateTaxStr %></span>
           </span>
         </div>
         <hr>
         <div class="order-total-container font-maroon font-bold display-flex justify-space-between">
-          <span class="order-total-label">Order total:</span><span class="order-total-price-container">$<span class="order-total-price">0.00</span></span>
+          <span class="order-total-label">Order total:</span><span class="order-total-price-container">$<span class="order-total-price"><%= orderTotal %></span></span>
         </div>
         <div class="place-order-container">
           <button class="place-order-button">Place your order</button>
@@ -142,5 +140,6 @@
     </div>
   </div>
   <script src="script/CartView.js"></script>
+  <script src="script/PlaceOrder.js"></script>
 </body>
 </html>

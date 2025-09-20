@@ -3,7 +3,6 @@ let itemsprice = document.querySelector(".items-price");
 function updateOrderTotal(beforeTax, estimateTax){
   const orderTotal = document.querySelector(".order-total-price");
   let beforeTaxPrice = parseInt(beforeTax.dataset.beforeTaxPrice);
-  console.log(beforeTax.dataset.beforeTaxPrice);
   let estimateTaxPrice = parseInt(estimateTax.dataset.estimateTaxPrice);
   orderTotal.innerHTML = `${((beforeTaxPrice + estimateTaxPrice)/100).toFixed(2)}`;
   
@@ -67,6 +66,72 @@ function updateItems(){
   updateShippingCharges();  
 }
 
+function showCartUpdateInfo(total) {
+  const cart_quantity = document.querySelector(".cart-quantity");
+  if (total.length == 1) {
+    total = `0${total}`;
+  }
+  cart_quantity.innerHTML = total;
+}
+
+function removeProduct(deleteButton){
+  const productId = deleteButton.dataset.productId;
+  const url = `Action.jsp?url=removeproduct&productid=${productId}`;
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = () => {
+    if(xmlhttp.readyState == 4){
+      if(xmlhttp.responseText.includes("login")){
+        alert("Please! login");
+      }
+      else if(xmlhttp.responseText.includes("total")){
+        let total = xmlhttp.responseText.split(":")[1].trim();
+        let productContainer = document.querySelector(`#${productId}-product`);
+        if(`${total}` == "0"){
+          document.querySelector(".product-list-container").innerHTML = "<h1>Your cart is empty</h1>";
+        }
+        productContainer.remove();
+        updateItems();
+        showCartUpdateInfo(`${total}`);
+      }
+      else{
+        const newTab = window.open('','_blank'); //Open new tab
+        newTab.document.write(`<html><body>${xmlhttp.responseText}</body></html>`);
+      }
+    }
+  }
+  xmlhttp.open("POST",url,true);
+  xmlhttp.send();
+}
+
+function updateCart(saveButton, deleteButton){
+  const productId = saveButton.dataset.productId;
+  const quantityObj = document.querySelector(`#${productId}-product-quantity`);
+  const quantity = quantityObj.firstChild.nodeValue;
+  const url = `Action.jsp?url=quantityupdate&productid=${productId}&quantity=${quantity}`;
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = () => {
+    if(xmlhttp.readyState == 4){
+      if(xmlhttp.responseText.includes("login")){
+        alert("Please! login");
+      }
+      else if(xmlhttp.responseText.includes("total")){
+        let total = xmlhttp.responseText.split(":")[1].trim();
+        quantityObj.removeAttribute("contenteditable");    
+        quantityObj.style.border = "none";
+        quantityObj.style.backgroundColor = "transparent";
+        deleteButton.style.display = "block";
+        saveButton.innerHTML = "Update";
+        showCartUpdateInfo(`${total}`);
+      }
+      else{
+        const newTab = window.open('','_blank'); //Open new tab
+        newTab.document.write(`<html><body>${xmlhttp.responseText}</body></html>`);
+      }
+    }
+  }
+  xmlhttp.open("POST",url,true);
+  xmlhttp.send();
+}
 function quantityUpdateButton(updateButton){
   const productId = updateButton.dataset.productId;
   const quantityInput = document.querySelector(`#${productId}-product-quantity`);
@@ -81,23 +146,48 @@ function quantityUpdateButton(updateButton){
     updateButton.innerHTML = "Save";
   }
   else{
-    quantityInput.removeAttribute("contenteditable");    
-    quantityInput.style.border = "none";
-    quantityInput.style.backgroundColor = "transparent";
-    deleteButton.style.display = "block";
-    updateButton.innerHTML = "Update";
+    updateCart(updateButton, deleteButton);
   }
 }
 
-let quantityInputAll = document.querySelectorAll(".product-quantity");
+function quantityValidation(obj,event){
+  const symbols = "~`!@#$%^&*()_+-=[]{}:\";<>?,./\\|'";
+  const upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowerLetters = upperLetters.toLowerCase();
+  const numbers = "123456789";
+  if(symbols.includes(`${event.key}`) || 
+     upperLetters.includes(`${event.key}`) ||
+     lowerLetters.includes(`${event.key}`)
+    ){
+    let text = obj.firstChild.nodeValue;
+    obj.innerHTML = `${text.replace(`${event.key}`,"")}`;
+  }
+  else if(parseInt(obj.firstChild.nodeValue) < 1){
+    obj.innerHTML = "1";
+  }
+  else if(`${event.key}` === " "){
+    obj.innerHTML = obj.firstChild.nodeValue.trim();
+  }
+  else if(obj.firstChild.nodeValue == null){
+    obj.innerHTML = "1";
+  }
+  else if(event.key == "ArrowUp"){
+    obj.innerHTML = `${parseInt(obj.firstChild.nodeValue)+1}`;
+  }
+  else if(event.key == "ArrowDown"){
+    obj.innerHTML = `${parseInt(obj.firstChild.nodeValue)-1}`;
+    if(parseInt(obj.firstChild.nodeValue) < 1){
+      obj.innerHTML = "1";
+    }
+  }
+  else{
+    if(obj.firstChild.nodeValue == null){
+      obj.innerHTML = "1";
+    }
+  }
+}
 
 function updateQuantity(obj, event){
-  const regex = "~`!@#$%^&*()_+-=[]{}:\";<>?,./\\|'/[A-Z]//[a-z]";
-  const reg = "/[A-Z]"
-  console.log(event.key);
-  if(regex.includes(`${event.key}`)){
-    let text = obj.firstChild.nodeValue;
-    console.log(text);
-    obj.innerHTML = `${text.substring(0,text.length-1)}`;
-  }
+  event.preventDefault(true);
+  quantityValidation(obj,event);
 }

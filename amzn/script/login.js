@@ -1,26 +1,20 @@
 function checkEmpty(){
-  const submit = document.querySelector("#submit");
+  let flag = true;
   for( const element of [email,pass]){
-    if(element.value.length < 3 ){
-      submit.setAttribute("disabled","");
-      message.innerHTML = `${element.placeholder} must be 3 characters long`;
+    if(element.value.length < 1 ){
+      message.innerHTML = `${element.placeholder} can not be empty`;
       message.style.animationName = "showmessage";
+      flag = false;
       break;
     }
     else{
-      submit.removeAttribute("disabled");
       message.style.animationName = "hidemessage";
+      flag = true;
     }
   }
+  return flag;
 }
 
-email.addEventListener("blur",() => {
-  checkEmpty();
-});
-
-pass.addEventListener("blur", () => {
-  checkEmpty();
-})
 
 document.querySelector("#submit").addEventListener("focus", () => {
   checkEmpty();
@@ -62,8 +56,10 @@ document.querySelector("#submit").addEventListener("click", () => {
       }
     }
   }
-  xmlhttp.open("POST",`Action.jsp?cooki=${cooki.value}&user=${email.value}&pass=${pass.value}&url=Validate`,true);
-  xmlhttp.send();
+  if(checkEmpty()){
+    xmlhttp.open("POST",`Action.jsp?cooki=${cooki.value}&user=${email.value}&pass=${pass.value}&url=Validate`,true);
+    xmlhttp.send();
+  }
 });
 
 
